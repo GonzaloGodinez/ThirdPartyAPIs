@@ -1,4 +1,4 @@
-// Use Day.js to get today's date below the title
+// Use Day.js to get today's timestamp date below the title
 var today = dayjs();
 getDate = () => {
     $('#currentDay').text(dayjs().format("ddd, MMM D, YYYY h:mm A"));
@@ -14,7 +14,7 @@ $(".saveBtn").click(function () {
     typeTime = $(this).siblings(".hour").text();
     console.log(typeText);
     console.log(typeTime);
-    localStorage.setItem(typeTime, JSON.stringify(typeText));
+    localStorage.setItem(typeTime, typeText);
     console.log(localStorage);
 });
 // add class for present, pass and future event depending time block
@@ -29,3 +29,8 @@ for (i = 9; i < 18; i++) {
         parent.children("textarea").addClass("future")
     }
 }
+$(".hour").each(function(){
+    time = $(this).text();
+    console.log(time)
+    $(this).siblings(".description").val(localStorage.getItem(time));
+})
